@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Invitación de Cumpleaños!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="envelope-screen" onclick="openInvitation()">
+        <div class="envelope">
+            <h2>💌 ¡Tienes una invitación!</h2>
+            <p>Haz clic en cualquier parte para abrir</p>
+        </div>
+    </div>
+
+    <div class="card" id="main-card">
+        <div class="photo-container">
+            <img src="https://via.placeholder.com/150" alt="Foto Cumpleañera">
+        </div>
+        <h1>¡Feliz Cumpleaños!</h1>
+        <h3>¡Mis 5 Añitos!</h3>
+        
+        <div class="details">
+            <p><strong>📅 Fecha:</strong> Sábado 25 de Octubre</p>
+            <p><strong>⏰ Hora:</strong> 16:00 hrs</p>
+            <p><strong>📍 Lugar:</strong> Salón de Eventos (Aquí va tu dirección)</p>
+            <br>
+            <p>¡Te invito a celebrar junto a mí este día tan especial lleno de juegos y diversión!</p>
+        </div>
+
+        <p style="font-size: 14px; font-weight: bold; color: #555;">¿Nos acompañas?</p>
+        
+        <div class="btn-container">
+            <button class="btn btn-yes" onclick="confirmAttendance('¡Sí asistiré! 🎉')">¡Sí iré! 🥳</button>
+            <button class="btn btn-no" onclick="confirmAttendance('No podré asistir 😢')">No podré 🥺</button>
+        </div>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="tu-cancion.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
