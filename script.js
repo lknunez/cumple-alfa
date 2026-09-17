@@ -1,4 +1,4 @@
-const whatsappNumber = "56912345678";
+const whatsappNumber = "56949916547"; // REEMPLAZA CON TU NÚMERO DE WHATSAPP
 
 function openInvitation() {
     const music = document.getElementById('bg-music');
@@ -11,36 +11,42 @@ function openInvitation() {
     setTimeout(() => {
         envelopeScreen.style.display = 'none';
         mainCard.classList.add('show');
-        launchBalloons();
+        launchSnowflakes(); // Lanzar animación invernal
     }, 500);
 }
 
-function launchBalloons() {
-    const colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#9b59b6', '#ff6b81'];
-    for (let i = 0; i < 15; i++) {
-        const balloon = document.createElement('div');
-        balloon.classList.add('balloon');
-        balloon.style.left = Math.random() * 90 + 'vw';
-        balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        balloon.style.animationDuration = (4 + Math.random() * 3) + 's';
-        balloon.style.animationDelay = (Math.random() * 2) + 's';
-        document.body.appendChild(balloon);
+function launchSnowflakes() {
+    // Genera copos de nieve / destellos de hielo
+    for (let i = 0; i < 25; i++) {
+        const flake = document.createElement('div');
+        flake.classList.add('snowflake');
+        
+        // Tamaños variados para simular nieve mágica
+        const size = Math.random() * 8 + 4;
+        flake.style.width = size + 'px';
+        flake.style.height = size + 'px';
+        
+        flake.style.left = Math.random() * 95 + 'vw';
+        flake.style.animationDuration = (3 + Math.random() * 4) + 's';
+        flake.style.animationDelay = (Math.random() * 3) + 's';
+        
+        document.body.appendChild(flake);
 
         setTimeout(() => {
-            balloon.remove();
+            flake.remove();
         }, 7000);
     }
 }
 
 function confirmAttendance(responseType) {
-    let guestName = prompt("Ingresa tu nombre y apellido para confirmar tu asistencia:");
+    let guestName = prompt("Por favor, ingresa tu nombre y apellido para confirmar:");
     if (!guestName || guestName.trim() === "") {
         guestName = "Invitado anónimo";
     }
 
-    const message = `*Hola! ${responseType}, Mi nombre es: ${guestName}*.`;
+    const message = `Hola! Respuesta de invitación Frozen: *${responseType}*. Mi nombre es: *${guestName}*.`;
     const encodedMessage = encodeURIComponent(message);
     
-    const url = `https://api.whatsapp.com/send?phone=${+56949916547}&text=${encodedMessage}`;
+    const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
     window.location.href = url;
 }
