@@ -6,80 +6,178 @@
 }
 
 body {
-    background: linear-gradient(135deg, #2a5298 0%, #1e3c72 50%, #70a1ff 100%);
+    /* Fondo con temática invernal / Frozen */
+    background: linear-gradient(135deg, #0f172a 0%, #1e3c72 40%, #0284c7 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px 10px;
     overflow-x: hidden;
     position: relative;
 }
 
+/* Botón Flotante de Música */
+.floating-music-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 55px;
+    height: 55px;
+    background: #38bdf8;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    box-shadow: 0 4px 20px rgba(56, 189, 248, 0.6);
+    cursor: pointer;
+    z-index: 5000;
+    transition: transform 0.2s, background 0.2s;
+    border: 3px solid white;
+}
+
+.floating-music-btn:hover {
+    transform: scale(1.1);
+    background: #0284c7;
+}
+
+/* Pantalla de Entrada / Sobre Mágico */
 #envelope-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(10, 25, 50, 0.85);
+    background: rgba(10, 25, 50, 0.92);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 2000;
     cursor: pointer;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.6s ease;
 }
 
-.envelope {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 40px 60px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 191, 255, 0.4);
-    text-align: center;
-    animation: bounce 2s infinite;
-    border: 3px solid #70a1ff;
-}
-
-.envelope h2 {
-    color: #1e3c72;
-    margin-bottom: 15px;
-    font-size: 24px;
-}
-
-.envelope p {
-    color: #444;
-    font-size: 16px;
-}
-
-.card {
-    background: rgba(255, 255, 255, 0.95);
+.envelope-card {
+    background: rgba(255, 255, 255, 0.98);
     width: 90%;
-    max-width: 400px;
-    border-radius: 25px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-    text-align: center;
+    max-width: 380px;
     padding: 30px 20px;
-    z-index: 10;
-    display: none;
-    transform: scale(0);
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 3px solid #b2bec3;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 191, 255, 0.3);
+    border: 4px solid #38bdf8;
+    animation: bounce 2s infinite;
 }
 
-.card.show {
-    display: block;
-    transform: scale(1);
+.photo-preview {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #0284c7;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.photo-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.envelope-card h2 {
+    color: #1e3c72;
+    font-size: 26px;
+    margin-bottom: 5px;
+}
+
+.age-badge {
+    background: #e0f2fe;
+    color: #0369a1;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 10px;
+    border: 1px solid #7dd3fc;
+}
+
+.envelope-card p {
+    color: #475569;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.env-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-date {
+    background: #f0f9ff;
+    color: #0369a1;
+    border: 2px solid #bae6fd;
+    padding: 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.btn-open {
+    background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+    transition: transform 0.2s;
+}
+
+.btn-open:hover {
+    transform: scale(1.03);
+}
+
+/* Contenedor Principal */
+.main-container {
+    width: 100%;
+    max-width: 480px;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 10;
+}
+
+.main-container.show {
+    display: flex;
+}
+
+/* Tarjetas de Sección estilo Hielo/Frozen */
+.section-card {
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 20px;
+    padding: 25px 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    border: 3px solid #38bdf8;
+    text-align: center;
+    position: relative;
 }
 
 .photo-container {
-    width: 130px;
-    height: 130px;
-    margin: 0 auto 20px auto;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 15px auto;
     border-radius: 50%;
     overflow: hidden;
-    border: 5px solid #00d2d3;
-    box-shadow: 0 0 20px rgba(0, 210, 211, 0.6);
+    border: 5px solid #38bdf8;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+    position: relative;
 }
 
 .photo-container img {
@@ -88,154 +186,388 @@ body {
     object-fit: cover;
 }
 
-.card h1 {
+.crown {
+    position: absolute;
+    top: -5px;
+    right: 15px;
+    font-size: 28px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.title {
     color: #1e3c72;
     font-size: 28px;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
-.card h3 {
-    color: #0097e6;
-    font-size: 18px;
-    margin-bottom: 15px;
-}
-
-.details {
-    background: #e8f4f8;
-    padding: 15px;
-    border-radius: 12px;
-    margin: 20px 0;
-    font-size: 14px;
-    color: #333;
-    line-height: 1.6;
-    text-align: left;
-    border-left: 5px solid #0097e6;
-}
-
-.details p strong {
-    color: #1e3c72;
-}
-
-.btn-container {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 25px;
+.subtitle {
+    color: #475569;
     font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    line-height: 1.4;
 }
 
-.btn:hover {
-    transform: translateY(-2px);
+.message-card {
+    background: #f0f9ff;
+    text-align: left;
+    font-size: 15px;
+    color: #334155;
+    line-height: 1.6;
+    border-color: #7dd3fc;
 }
 
-.btn-yes {
-    background: #00d2d3;
-    color: #1e3c72;
-    box-shadow: 0 4px 10px rgba(0, 210, 211, 0.4);
-}
-
-.btn-no {
-    background: #ff6b81;
-    color: white;
-}
-
-/* Estilos para el Modal de Nombre Interno */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(10, 25, 50, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.modal-content {
-    background: white;
-    width: 85%;
-    max-width: 320px;
-    padding: 25px;
-    border-radius: 20px;
+.heart-icon {
+    font-size: 28px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    border: 2px solid #00d2d3;
-}
-
-.modal-content h3 {
-    color: #1e3c72;
     margin-bottom: 10px;
 }
 
-.modal-content p {
+.message-card p {
+    margin-bottom: 12px;
+}
+
+.highlight-text {
+    text-align: center;
+    font-weight: bold;
+    color: #0284c7;
+    margin-top: 15px;
+}
+
+.section-header {
+    background: linear-gradient(135deg, #1e3c72 0%, #0284c7 100%);
+    color: white;
+    padding: 10px;
+    border-radius: 12px;
+    margin: -25px -20px 20px -20px;
+    font-size: 16px;
+    border-bottom: 3px solid #38bdf8;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 2px solid #38bdf8;
+    transition: transform 0.2s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+.gallery-hint {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    background: #f8fafc;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    text-align: left;
+    border-left: 4px solid #0284c7;
+}
+
+.detail-icon {
+    background: #e0f2fe;
+    color: #0284c7;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.detail-text h3 {
     font-size: 14px;
-    color: #555;
+    color: #64748b;
+    margin-bottom: 2px;
+}
+
+.detail-text p {
+    font-size: 15px;
+    font-weight: bold;
+    color: #1e293b;
+}
+
+.sub-detail {
+    font-size: 13px;
+    color: #0284c7;
+}
+
+.references-box {
+    background: #f0f9ff;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    text-align: left;
+    border: 1px solid #bae6fd;
+}
+
+.references-box h4 {
+    font-size: 14px;
+    color: #0284c7;
+    margin-bottom: 8px;
+}
+
+.ref-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    font-size: 13px;
+    color: #334155;
+}
+
+.map-container {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    border: 2px solid #cbd5e1;
+}
+
+.map-buttons {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.btn-map {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-map.google { background: #10b981; }
+.btn-map.waze { background: #06b6d4; }
+
+.map-footer-note {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* Tarjetas de Contáctanos */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
     margin-bottom: 15px;
 }
 
-.modal-content input {
-    width: 100%;
-    padding: 10px 15px;
-    border: 2px solid #cbd5e1;
+.contact-card {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 15px;
+    padding: 15px 10px;
+    text-align: center;
+}
+
+.contact-avatar {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.contact-card h3 {
+    font-size: 16px;
+    color: #1e3c72;
+    margin-bottom: 2px;
+}
+
+.contact-card p {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 12px;
+}
+
+.btn-whatsapp {
+    background: #22c55e;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4);
+}
+
+.contact-note {
+    font-size: 12px;
+    color: #64748b;
+    background: #f0f9ff;
+    padding: 10px;
     border-radius: 10px;
-    font-size: 14px;
-    outline: none;
-    margin-bottom: 20px;
-    transition: border-color 0.2s;
+    text-align: left;
+    border: 1px solid #bae6fd;
 }
 
-.modal-content input:focus {
-    border-color: #00d2d3;
-}
-
-.modal-buttons {
+/* Sección Compartir */
+.share-actions {
     display: flex;
-    gap: 10px;
     justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
 }
 
-/* Copos de nieve */
-.snowflake {
-    position: absolute;
-    bottom: -50px;
-    background: white;
+.share-btn {
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    z-index: 5;
-    opacity: 0.8;
+    border: none;
+    font-size: 20px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    text-decoration: none;
+}
+.share-btn.wa { background: #22c55e; }
+.share-btn.copy { background: #0284c7; }
+
+/* Confirmación */
+.confirm-question {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1e293b;
+    margin-bottom: 5px;
+}
+
+.confirm-sub {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 15px;
+}
+
+.attendance-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-confirm {
+    padding: 14px;
+    border: none;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.2s;
+}
+
+.btn-confirm:hover { transform: scale(1.02); }
+.btn-confirm.yes { background: #22c55e; }
+.btn-confirm.no { background: #ef4444; }
+
+/* Sección Cierre */
+.closing-section {
+    background: #f8fafc;
+}
+
+.closing-text {
+    font-size: 14px;
+    color: #475569;
+    line-height: 1.5;
+}
+
+.family-sign {
+    margin: 20px 0;
+}
+
+.family-sign p {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.family-sign h3 {
+    font-size: 18px;
+    color: #1e3c72;
+    margin-top: 2px;
+}
+
+.btn-back-top {
+    background: #0284c7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+/* Modal y Lightbox */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.85);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 3000;
+    opacity: 0; visibility: hidden;
+    transition: 0.3s ease;
+}
+.modal-overlay.active { opacity: 1; visibility: visible; }
+
+.modal-content {
+    background: white; width: 85%; max-width: 320px;
+    padding: 25px; border-radius: 20px; text-align: center;
+    border: 3px solid #38bdf8;
+}
+.modal-content h3 { color: #1e3c72; margin-bottom: 10px; }
+.modal-content p { font-size: 14px; color: #475569; margin-bottom: 15px; }
+.modal-content input {
+    width: 100%; padding: 12px; border: 2px solid #cbd5e1;
+    border-radius: 10px; font-size: 14px; outline: none; margin-bottom: 15px;
+}
+
+.lightbox {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9); display: flex; justify-content: center; align-items: center;
+    z-index: 4000; display: none; cursor: pointer;
+}
+.lightbox img { max-width: 90%; max-height: 90%; border-radius: 10px; border: 3px solid white; }
+
+/* Animación de Copos de Nieve Mágicos */
+.snowflake {
+    position: absolute; bottom: -50px; background: white;
+    border-radius: 50%; z-index: 5; opacity: 0.8;
     box-shadow: 0 0 8px white;
     animation: fallUp 5s linear infinite;
 }
-
 @keyframes fallUp {
-    0% {
-        transform: translateY(0) scale(0.8);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-110vh) scale(1.2);
-        opacity: 0;
-    }
+    0% { transform: translateY(0) scale(0.8); opacity: 1; }
+    100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
 }
-
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }

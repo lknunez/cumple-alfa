@@ -3,58 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Invitación de Cumpleaños - Frozen!</title>
+    <title>¡Primer Añito - Erick Andre (Aventura Helada)!</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Pantalla Inicial / Sobre de Hielo -->
+    <!-- Botón Flotante de Música -->
+    <div id="music-btn" class="floating-music-btn" onclick="toggleMusic()" style="display: none;">
+        <i id="music-icon" class="fa-solid fa-music"></i>
+    </div>
+
+    <!-- Pantalla Inicial / Sobre Temático de Hielo -->
     <div id="envelope-screen" onclick="openInvitation()">
-        <div class="envelope">
-            <h2>❄️ ¡Tienes un mensaje de Arendelle! ❄️</h2>
-            <p>Haz clic en cualquier parte para abrir la invitación</p>
-        </div>
-    </div>
-
-    <!-- Tarjeta de Invitación -->
-    <div class="card" id="main-card">
-        <div class="photo-container">
-            <!-- REEMPLAZA ESTE ENLACE CON LA FOTO DE TU HIJA -->
-            <img src="https://via.placeholder.com/150" alt="Foto Cumpleañera">
-        </div>
-        <h1>¡Un Cumpleaños Mágico!</h1>
-        <h3>¡Mis 5 Añitos con Elsa y Anna!</h3>
-        
-        <div class="details">
-            <p><strong>📅 Fecha:</strong> Sábado 25 de Octubre</p>
-            <p><strong>⏰ Hora:</strong> 16:00 hrs</p>
-            <p><strong>📍 Lugar:</strong> Salón de Eventos (Aquí va tu dirección)</p>
-            <br>
-            <p>¡Te invito a unirte a esta gran aventura helada llena de magia, juegos y diversión!</p>
-        </div>
-
-        <p style="font-size: 14px; font-weight: bold; color: #1e3c72;">¿Nos acompañas en el reino?</p>
-        
-        <div class="btn-container">
-            <button class="btn btn-yes" onclick="preConfirm('¡Sí asistiré! ❄️')">¡Sí iré! 🏰</button>
-            <button class="btn btn-no" onclick="preConfirm('No podré asistir 😢')">No podré 🌨️</button>
-        </div>
-    </div>
-
-    <!-- Modal personalizado para pedir el nombre (Diseño Hermoso) -->
-    <div id="name-modal" class="modal-overlay">
-        <div class="modal-content">
-            <h3>❄️ ¡Casi listo! ❄️</h3>
-            <p id="modal-response-text">Escribe tu nombre y apellido para confirmar:</p>
-            <input type="text" id="guest-name-input" placeholder="Tu Nombre y Apellido">
-            <div class="modal-buttons">
-                <button class="btn btn-yes" onclick="sendToWhatsApp()">Enviar a WhatsApp 💬</button>
-                <button class="btn btn-no" onclick="closeModal()">Cancelar</button>
+        <div class="envelope-card">
+            <div class="photo-preview">
+                <img src="foto1.jpg" alt="Erick Andre" onerror="this.src='https://via.placeholder.com/150'">
+            </div>
+            <h2>❄️ Erick Andre ❄️</h2>
+            <div class="age-badge">1 añito - Estilo Frozen</div>
+            <p>¡Un mensaje mágico de Arendelle te espera!</p>
+            <div class="env-buttons">
+                <button class="btn-date"><i class="fa-solid fa-calendar-days"></i> 14 de Febrero 2026</button>
+                <button class="btn-open"><i class="fa-solid fa-snowflake"></i> ABRIR INVITACIÓN</button>
             </div>
         </div>
     </div>
 
-    <!-- Música de fondo -->
+    <!-- Contenido Principal de la Invitación -->
+    <div class="main-container" id="main-content">
+        
+        <!-- Sección 1: Portada con Olaf decorativo -->
+        <section class="section-card">
+            <div class="character-top-left">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100" alt="Olaf" style="display:none"> <!-- Placeholder seguro o icono -->
+            </div>
+            <div class="photo-container">
+                <img src="foto1.jpg" alt="Erick Andre" onerror="this.src='https://via.placeholder.com/150'">
+                <div class="crown">❄️</div>
+            </div>
+            <h1 class="title">¡Estás Invitado!</h1>
+            <p class="subtitle">Celebremos juntos el primer cumpleaños de nuestro pequeño príncipe en el reino de hielo</p>
+        </section>
+
+        <!-- Sección 2: Mensaje de los Padres con Elsa y Anna ilustrativas -->
+        <section class="section-card message-card">
+            <div class="frozen-header-img">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" alt="Fondo Hielo" style="display:none">
+            </div>
+            <div class="heart-icon">💙</div>
+            <p>Con muchísima alegría y emoción, queremos invitarte a celebrar el <strong>primer año de vida</strong> de nuestro hijo <strong>Erick Andre</strong>.</p>
+            <p>Ha sido un año mágico lleno de amor, risas, primeros pasos y momentos inolvidables. Ahora queremos compartir este día especial contigo, rodeados de familia, amigos y mucha diversión.</p>
+            <p class="highlight-text">¡Será una fiesta helada e increíble que no te puedes perder! ❄️✨</p>
+        </section>
+
+        <!-- Sección 3: Galería de Momentos -->
+        <section class="section-card">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-images"></i> Momentos Mágicos</h2>
+            </div>
+            <div class="gallery">
+                <img src="foto2.jpg" alt="Momento 1" onclick="openLightbox(this.src)" onerror="this.src='https://via.placeholder.com/150'">
+                <img src="foto3.jpg" alt="Momento 2" onclick="openLightbox(this.src)" onerror="this.src='https://via.placeholder.com/150'">
+                <img src="foto1.jpg" alt="Momento 3" onclick="openLightbox(this.src)" onerror="this.src='https://via.placeholder.com/150'">
+            </div>
+            <p class="gallery-hint"><i class="fa-solid fa-circle-info"></i> Haz clic en las fotos para verlas en grande</p>
+        </section>
+
+        <!-- Sección 4: Detalles del Evento -->
+        <section class="section-card">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-circle-info"></i> Detalles del Reino</h2>
+            </div>
+            
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                <div class="detail-text">
+                    <h3>Fecha</h3>
+                    <p>Sábado, 14 de Febrero de 2026</p>
+                    <span class="sub-detail">¡Día del amor y la amistad! 💙</span>
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fa-solid fa-clock"></i></div>
+                <div class="detail-text">
+                    <h3>Hora</h3>
+                    <p>15:00 horas (3:00 PM)</p>
+                    <span class="sub-detail">¡Te esperamos puntuales en el castillo! ⏰</span>
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="detail-text">
+                    <h3>Lugar</h3>
+                    <p>El Fundador #0565, Villa Bernardo Leighton 2</p>
+                    <span class="sub-detail">Puente Alto, Región Metropolitana 📍</span>
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fa-solid fa-shirt"></i></div>
+                <div class="detail-text">
+                    <h3>Vestimenta</h3>
+                    <p>¡Ven como quieras!</p>
+                    <span class="sub-detail">Lo importante es que te sientas cómodo para la gran aventura ❄️✨</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 5: Ubicación y Mapas -->
+        <section class="section-card">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-map-location-dot"></i> ¿Cómo Llegar al Castillo?</h2>
+            </div>
+            
+            <div class="references-box">
+                <h4><i class="fa-solid fa-signs-post"></i> Referencias para llegar:</h4>
+                <div class="ref-grid">
+                    <span><i class="fa-solid fa-train-subway"></i> A minutos de Metro Las Mercedes</span>
+                    <span><i class="fa-solid fa-futbol"></i> Frente a cancha techada</span>
+                    <span><i class="fa-solid fa-bars"></i> Reja de madera</span>
+                    <span><i class="fa-solid fa-droplet"></i> Grifo amarillo al lado</span>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3324.2384!2d-70.575!3d-33.582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDM0JzU5LjIiUyA3MMKwMzQnMzAuMCJX!5e0!3m2!1ses!2scl!4v1620000000000!5m2!1ses!2scl" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <div class="map-buttons">
+                <a href="https://maps.google.com/?q=El+Fundador+0565+Puente+Alto" target="_blank" class="btn-map google"><i class="fa-solid fa-map"></i> Abrir en Google Maps</a>
+                <a href="https://waze.com/ul?q=El+Fundador+0565+Puente+Alto" target="_blank" class="btn-map waze"><i class="fa-solid fa-car"></i> Abrir en Waze</a>
+            </div>
+            <p class="map-footer-note"><i class="fa-solid fa-circle-exclamation"></i> Si tienes problemas para encontrar la dirección, escríbenos por WhatsApp</p>
+        </section>
+
+        <!-- Sección 6: Contáctanos (Mamá y Papá) -->
+        <section class="section-card">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-headset"></i> Contáctanos</h2>
+            </div>
+            <p class="confirm-sub">Para cualquier consulta o confirmación, puedes contactarnos por WhatsApp</p>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-avatar">👑</div>
+                    <h3>Mamá</h3>
+                    <p>Natalia Navarro</p>
+                    <a href="https://wa.me/56920714213?text=Hola%20Natalia,%20tengo%20una%20consulta%20sobre%20el%20cumpleaños%20de%20Erick%20Andre" target="_blank" class="btn-whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> +569 2071 4213
+                    </a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-avatar">🏰</div>
+                    <h3>Papá</h3>
+                    <p>Kristopher Astudillo</p>
+                    <a href="https://wa.me/56932047833?text=Hola%20Kristopher,%20tengo%20una%20consulta%20sobre%20el%20cumpleaños%20de%20Erick%20Andre" target="_blank" class="btn-whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> +569 3204 7833
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-note">
+                <i class="fa-solid fa-circle-info"></i> También puedes contactarnos por cualquier pregunta sobre regalos, alergias alimentarias o necesidades especiales
+            </div>
+        </section>
+
+        <!-- Sección 7: Comparte la Invitación (Ocultable si lo deseas cambiando style a 'none') -->
+        <section class="section-card" id="share-section" style="display: block;">
+            <div class="section-header" style="background: #0284c7;">
+                <h2><i class="fa-solid fa-share-nodes"></i> Comparte la Invitación</h2>
+            </div>
+            <p class="confirm-sub">Ayúdanos a invitar a más amigos y familiares</p>
+            <div class="share-actions">
+                <a href="https://api.whatsapp.com/send?text=¡Mira%20la%20invitación%20al%20primer%20año%20de%20Erick%20Andre%20temática%20Frozen!%20Haz%20clic%20aquí:" target="_blank" class="share-btn wa"><i class="fa-brands fa-whatsapp"></i></a>
+                <button class="share-btn copy" onclick="copyLink()"><i class="fa-solid fa-link"></i></button>
+            </div>
+        </section>
+
+        <!-- Sección 8: Confirmación de Asistencia -->
+        <section class="section-card confirm-section">
+            <div class="section-header" style="background: #0369a1;">
+                <h2><i class="fa-solid fa-square-check"></i> Confirma tu Asistencia</h2>
+            </div>
+            <p class="confirm-question">¿Podrás acompañarnos en este día tan mágico?</p>
+            <p class="confirm-sub">Tu respuesta nos ayuda a preparar todo para que disfrutes al máximo</p>
+
+            <div class="attendance-btns">
+                <button class="btn-confirm yes" onclick="preConfirm('¡Claro que sí asistiré! ❄️')">
+                    <i class="fa-solid fa-snowflake"></i> ¡CLARO QUE SÍ!
+                </button>
+                <button class="btn-confirm no" onclick="preConfirm('No podré asistir 😢')">
+                    <i class="fa-solid fa-face-frown"></i> NO PODRÉ ASISTIR
+                </button>
+            </div>
+        </section>
+
+        <!-- Sección 9: Cierre / Te Esperamos -->
+        <section class="section-card closing-section">
+            <div class="section-header" style="background: #1e3c72;">
+                <h2><i class="fa-solid fa-wand-magic-sparkles"></i> ¡Te Esperamos!</h2>
+            </div>
+            <p class="closing-text">Será un día lleno de magia, risas, juegos y mucha diversión invernal. No faltes a esta celebración tan especial para nosotros.</p>
+            <p class="closing-text" style="margin-top: 10px;">Tu presencia es el mejor regalo que podemos recibir. ¡Nos vemos pronto en Arendelle!</p>
+            
+            <div class="family-sign">
+                <p>Con mucho cariño,</p>
+                <h3>Familia Astudillo Navarro</h3>
+            </div>
+
+            <button class="btn-back-top" onclick="scrollToTop()">
+                <i class="fa-solid fa-arrow-up"></i> Volver al Inicio
+            </button>
+        </section>
+
+    </div>
+
+    <!-- Modal para pedir el nombre -->
+    <div id="name-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>❄️ ¡Casi listo! ❄️</h3>
+            <p>Escribe tu nombre y apellido (y quiénes te acompañan):</p>
+            <input type="text" id="guest-name-input" placeholder="Ej: Familia Pérez / Juan Soto">
+            <div class="modal-buttons">
+                <button class="btn-confirm yes" onclick="sendToWhatsApp()" style="padding: 10px 20px; font-size: 14px;">Enviar a WhatsApp 💬</button>
+                <button class="btn-confirm no" onclick="closeModal()" style="padding: 10px 20px; font-size: 14px;">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Visor de imágenes (Lightbox) -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Ampliada">
+    </div>
+
+    <!-- Música de Fondo -->
     <audio id="bg-music" loop>
         <source src="tu-cancion.mp3" type="audio/mpeg">
     </audio>
