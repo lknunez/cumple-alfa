@@ -36,12 +36,25 @@
         <p style="font-size: 14px; font-weight: bold; color: #1e3c72;">¿Nos acompañas en el reino?</p>
         
         <div class="btn-container">
-            <button class="btn btn-yes" onclick="confirmAttendance('¡Sí asistiré! ❄️')">¡Sí iré! 🏰</button>
-            <button class="btn btn-no" onclick="confirmAttendance('No podré asistir 😢')">No podré 🌨️</button>
+            <button class="btn btn-yes" onclick="preConfirm('¡Sí asistiré! ❄️')">¡Sí iré! 🏰</button>
+            <button class="btn btn-no" onclick="preConfirm('No podré asistir 😢')">No podré 🌨️</button>
         </div>
     </div>
 
-    <!-- Música de fondo (puedes cambiar "tu-cancion.mp3" por una instrumental de Frozen o la que prefieras) -->
+    <!-- Modal personalizado para pedir el nombre (Diseño Hermoso) -->
+    <div id="name-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>❄️ ¡Casi listo! ❄️</h3>
+            <p id="modal-response-text">Escribe tu nombre y apellido para confirmar:</p>
+            <input type="text" id="guest-name-input" placeholder="Tu Nombre y Apellido">
+            <div class="modal-buttons">
+                <button class="btn btn-yes" onclick="sendToWhatsApp()">Enviar a WhatsApp 💬</button>
+                <button class="btn btn-no" onclick="closeModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Música de fondo -->
     <audio id="bg-music" loop>
         <source src="tu-cancion.mp3" type="audio/mpeg">
     </audio>
